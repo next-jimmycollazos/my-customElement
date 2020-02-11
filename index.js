@@ -3,18 +3,30 @@
 
 import "@webcomponents/webcomponentsjs/webcomponents-bundle";
 import '@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js';
-class AppDrawer extends HTMLElement {
 
-  static get is() { return 'app-drawer' }
 
-  //static get observedAttributes() {
-    //return ['disabled', 'open'];
-  //}
+class HTMLPasswordExtra extends HTMLInputElement {
+
+  static get is() { return 'extra-password-checked' }
+
   constructor() {
-    super(); // always call super() first in the constructor.
-    this.innerHTML = "hello world!";
+    super(); 
+    this.strange = 0; // 0 = low; 1 = meddium, 2 = h;
   }
-  connectedCallback() { }
+  connectedCallback() {
+    
+    this.addEventListener('change', (ev) => {
+      if(this.value.length > 10){
+        this.strange = 2;
+      } else if (this.value.length > 5) {
+        this.strange = 1;
+      } else {
+        this.strange = 0;
+      }
+
+      console.log(this.value);
+    })
+  }
 
   disconnectedCallback() { }
 
@@ -23,4 +35,4 @@ class AppDrawer extends HTMLElement {
   adopedCallback() { }
 }
 
-customElements.define(AppDrawer.is, AppDrawer)
+customElements.define(HTMLPasswordExtra.is, HTMLPasswordExtra, {extends: 'input'})
