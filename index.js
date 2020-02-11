@@ -12,7 +12,7 @@ class AppDrawer extends HTMLElement {
   //}
   constructor() {
     super(); // always call super() first in the constructor.
-    //this.innerHTML = "hello world!"
+    this.innerHTML = "hello world!";
   }
   connectedCallback() { }
 
